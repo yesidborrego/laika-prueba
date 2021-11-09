@@ -13,67 +13,84 @@
       </div>
 
       <div class="d-flex flex-wrap justify-content-center border_b_cards pb-4">
-        <ul id="light-slider">
-          <li v-for="category in categories" :key="category.id">
-            <Category :category="category" />
-          </li>
-        </ul>
+        <template v-if="!isLoading">
+          <ul id="light-slider">
+            <li v-for="category in categories" :key="category.id">
+              <Category :category="category" @redirect_filters="redirect_filters" />
+            </li>
+          </ul>
+        </template>
+        <template v-else>
+          <Spinner />
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Category from "./Category.vue"
+  import laikaApi from '../../api/laikaApi'
+  import Spinner from '../../spinner.vue'
+  import Category from "./Category.vue"
 
   export default {
     name: 'Categories',
-    props: {
-      categories: {
-        type: Array,
-        required: true
-      }
-    },
     components: {
-      Category
+      Category,
+      Spinner
     },
     data() {
       return {
         optionsSlider: {
           item: 6,
-          autoWidth: false,
+          autoWidth: true,
           slideMove: 1,
           slideMargin: 10,
           controls: false,
           pager: false,
-          responsive : [{
-                      breakpoint: 1300,
-                      settings: {
-                          item: 5,
-                      }
-                  }, {
-                      breakpoint: 1024,
-                      settings: {
-                          item: 4,
-                      }
-                  }, {
-                      breakpoint: 848,
-                      settings: {
-                          item: 3,
-                      }
-                  }, {
-                      breakpoint: 565,
-                      settings: {
-                          item: 2,
-                      }
-                  }],
-        }
+          responsive : [
+            {
+              breakpoint: 1300,
+              settings: {
+                item: 5,
+              }
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                item: 4,
+              }
+            },
+            {
+                breakpoint: 848,
+                settings: {
+                  item: 3,
+                }
+            },
+            {
+                breakpoint: 565,
+                settings: {
+                  item: 2,
+                }
+            }],
+        },
+        categories: [],
+        isLoading: false
       }
     },
-    mounted() {
+    created() {
+      this.getCategories()
+    },
+    updated() {
       this.sliderLS = $("#light-slider").lightSlider(this.optionsSlider);
     },
     methods: {
+      async getCategories() {
+        this.isLoading = true
+        const { data } = await laikaApi.get('/categories')
+        this.categories = data.data
+        this.isLoading = false
+      },
       redirect_filters() {
         console.log('redirect_filters')
       },

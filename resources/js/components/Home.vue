@@ -10,9 +10,9 @@
 </template>
 
 <script>
-  import Navbar from '../js/components/header/Navbar.vue'
-  import NavbarContact from '../js/components/header/NavbarContact.vue'
-  import MainContent from '../js/components/main/MainContent.vue'
+  import Navbar from './header/Navbar.vue'
+  import NavbarContact from './header/NavbarContact.vue'
+  import MainContent from './main/MainContent.vue'
 
   export default {
     name: 'Home',

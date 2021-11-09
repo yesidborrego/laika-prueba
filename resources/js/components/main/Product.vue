@@ -47,10 +47,10 @@
           </span>
         </p>
         <div class="custom-radio-button pl-1 pt-2 custom-radio-button-scroll">
-          <div v-for="(detail) in productCard.details" :key="detail.id" >
-            <input type="radio" :value="detail.name" :name="detail.name" :checked="detail.selected" :id="detail.id" required>
-            <span class="text_quantity_product text_overflow_1_line" data-toggle="tooltip" data-placement="top" :title="detail.name">
-              <label :for="detail.selected" @click="change_button_stock(detail.id, product.id)">
+          <div v-for="(detail) in productCard.details" :key="detail.id">
+            <input type="radio" :value="detail.name" :name="detail.name" :id="detail.id" required>
+            <span class="text_quantity_product text_overflow_1_line" :title="detail.name">
+              <label :for="detail.selected" @click="change_button_stock(detail.id, product.id)" :class="[detail.selected ? 'bg_purple text-white' : '']">
                 {{ detail.name }}
               </label>
             </span>

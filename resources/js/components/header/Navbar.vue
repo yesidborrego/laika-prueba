@@ -5651,6 +5651,9 @@
       validate_city_cart() {
         console.log("validate_city_cart");
       },
+      close() {
+        console.log('close')
+      }
     },
   };
 </script>
