@@ -1,0 +1,12 @@
+
+@font-face {
+  font-family: 'Causten medium';
+  src: url(../fonts/Causten-Medium.otf) format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Causten bold';
+  src: url(../fonts/Causten-SemiBold) format("truetype");
+  font-weight: normal;
+}
