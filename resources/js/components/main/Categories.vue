@@ -30,7 +30,7 @@
 
 <script>
   import laikaApi from '../../api/laikaApi'
-  import Spinner from '../../spinner.vue'
+  import Spinner from '../spinner.vue'
   import Category from "./Category.vue"
 
   export default {
@@ -87,9 +87,13 @@
     methods: {
       async getCategories() {
         this.isLoading = true
-        const { data } = await laikaApi.get('/categories')
-        this.categories = data.data
-        this.isLoading = false
+        try {
+          const { data } = await laikaApi.get('/categories')
+          this.categories = data.data
+          this.isLoading = false
+        } catch (error) {
+          console.log(error)
+        }
       },
       redirect_filters() {
         console.log('redirect_filters')

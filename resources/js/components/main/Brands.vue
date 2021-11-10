@@ -22,7 +22,7 @@
 
 <script>
   import laikaApi from '../../api/laikaApi'
-  import Spinner from '../../spinner.vue'
+  import Spinner from '../spinner.vue'
 
   export default {
     components: { Spinner },
@@ -80,9 +80,13 @@
     methods: {
       async getBrands() {
         this.isLoading = true
-        const { data } = await laikaApi.get('/brands')
-        this.brands = data.data
-        this.isLoading = false
+        try {
+          const { data } = await laikaApi.get('/brands')
+          this.brands = data.data
+          this.isLoading = false
+        } catch (error) {
+          console.log(error)
+        }
       },
       redirect_filters() {
         console.log('redirect_filters')

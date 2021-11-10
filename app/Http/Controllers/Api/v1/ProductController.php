@@ -39,7 +39,18 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $products = Config::get("laikadata.products");
+        $product = array_values(array_filter(array_map(function ($product) use($id) {
+            if ($product['id'] == $id) {
+                return $product;
+            }
+        }, $products)));
+
+
+        return response()->json([
+            "data"   =>  $product[0]
+        ]);
     }
 
     /**

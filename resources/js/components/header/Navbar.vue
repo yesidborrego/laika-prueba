@@ -24,7 +24,7 @@
                 <div>
                   <a
                     v-if="item.name == 'Cerrar sesión'"
-                    @click.prevent="logout()"
+                    @click.prevent="logout"
                     class="btn btn-link pl-4 pr-4"
                   >
                     <div class="w-100 position-relative py-2 sections_sidebar d-flex">
@@ -3047,100 +3047,7 @@
                 <div class="container_without_delivery_free">
                   <div class="text-center btn_checkout_cart">
                     <a
-                      @click="
-                        validate_session({
-                          id: 1,
-                          name: 'Bogot\u00e1 D.C.',
-                          text_cvv:
-                            'Hola por seguridad y para que tu pedido salga bien necesitamos validar tu c\u00f3digo CVV, este c\u00f3digo no ser\u00e1 almacenado en ning\u00fan lado',
-                          phone: '3009108496',
-                          whatsapp: '+573009108496',
-                          short_name: 'BOG',
-                          youtube:
-                            'https:\/\/www.youtube.com\/watch?v=gchln4oix68',
-                          facebook:
-                            'https:\/\/es-la.facebook.com\/LaikaUniverso\/',
-                          instagram:
-                            'https:\/\/www.instagram.com\/laikamascotas\/?hl=es-la',
-                          slug: 'bog',
-                          logo_web:
-                            'https:\/\/laikapp.s3.amazonaws.com\/general\/logo_laika_co.png',
-                          avatar:
-                            'https:\/\/laikapp.s3.amazonaws.com\/general\/avatar_col.png',
-                          enabled_membership: 1,
-                          enabled_billing: 1,
-                          blog: 'https:\/\/blog.laika.com.co\/',
-                          email: 'servicioclientes@laika.com.co',
-                          address_format: 1,
-                          nacional: 0,
-                          enabled_municipality: false,
-                          free_delivery_no_apply:
-                            'para que tu env\u00edo sea gratis! *No aplica para pedidos express',
-                          free_delivery_apply:
-                            '\u00a1Genial! tu env\u00edo es GRATIS, *No aplica pedido express',
-                          before_free_delivery_no_apply: '\u00a1Faltan',
-                          membership: {
-                            id: 7,
-                            name: 'Membres\u00eda Laika',
-                            benefits:
-                              '15% de descuento en todos los productos para tu peludo\nLaikabox de regalo que incluye medias de Laika para estar en la casa con tu peludo\n15% de descuento en veterinario a domicilio\nPor cada pedido Laika donar\u00e1 a una fundaci\u00f3n para los peludos\n120000Domicilio',
-                            value: '50000',
-                            image:
-                              'https:\/\/laikapp.s3.amazonaws.com\/dev_images_general\/162931482916185897721615506516membresia.png',
-                            acquired: false,
-                            final_date: null,
-                            start_date: null,
-                            total_monthly_savings_member: null,
-                            total_savings_member: 0,
-                            value_monthly: 4167,
-                            kit: null,
-                            membership_variables: [
-                              {
-                                variable: {
-                                  id: 1,
-                                  name: '% de descuento en todos los productos para tu peludo',
-                                },
-                                variable_id: 1,
-                                value: '15',
-                                is_primary: 1,
-                              },
-                              {
-                                variable: {
-                                  id: 22,
-                                  name: 'Laikabox de regalo que incluye medias de Laika para estar en la casa con tu peludo',
-                                },
-                                variable_id: 22,
-                                value: '0',
-                                is_primary: 2,
-                              },
-                              {
-                                variable: {
-                                  id: 12,
-                                  name: '% de descuento en veterinario a domicilio',
-                                },
-                                variable_id: 12,
-                                value: '15',
-                                is_primary: 2,
-                              },
-                              {
-                                variable: {
-                                  id: 6,
-                                  name: 'Por cada pedido Laika donar\u00e1 a una fundaci\u00f3n para los peludos',
-                                },
-                                variable_id: 6,
-                                value: '0',
-                                is_primary: 2,
-                              },
-                              {
-                                variable: { id: 0, name: 'Domicilio' },
-                                variable_id: 0,
-                                value: '120000',
-                                is_primary: 1,
-                              },
-                            ],
-                          },
-                        })
-                      "
+                      @click="validate_session"
                       type="button"
                       class="btn bg_purple text-white shadow rounded"
                       :class="!products.length ? 'disabled' : ''"
@@ -3165,12 +3072,12 @@
         <div class="form_search mx-0" id="search_auto">
           <div class="img_laika_1 position-relative">
             <div class="position-absolute">
-              <a href="https://laika.com.co/city/bog/dog">
+              <router-link :to="{ name: 'Home' }">
                 <img
                   src="https://laika.com.co/assets/home/LaikaMascotas.svg"
                   class="img_laika_navbar lazy"
                 />
-              </a>
+              </router-link>
             </div>
           </div>
           <div
@@ -5653,6 +5560,12 @@
       },
       close() {
         console.log('close')
+      },
+      validate_session() {
+        console.log('validate_session')
+      },
+      logout() {
+        console.log('logout')
       }
     },
   };
