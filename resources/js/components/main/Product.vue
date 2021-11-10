@@ -10,14 +10,17 @@
         <div class="font_nova_bold text_badge_product_card_bottom" style="display: none;">DESCUENTO</div>
       </span>
       <div class="row classss justify-content-center">
-        <a href="#">
+        <!-- <a href="#">
           <img id="img_product_dog_4412" class="img_card_products ml-auto mr-auto mt-3 mb-3 lazy" :alt="productCard.name" style="width: 180px;" :src="productCard.image" />
-        </a>
+        </a> -->
+        <router-link :to="{ name: 'ProductDetail', params: { id: productCard.id } }">
+          <img id="img_product_dog_4412" class="img_card_products ml-auto mr-auto mt-3 mb-3 lazy" :alt="productCard.name" style="width: 180px;" :src="productCard.image" />
+        </router-link>
       </div>
       <div class="card_products ml-3 mt-1 mr-3 text-left">
-        <a href="#">
+        <router-link :to="{ name: 'ProductDetail', params: { id: productCard.id } }">
           <h3 class="mb-2 text_product_card font-weight-bold" data-toggle="tooltip" data-placement="top" :title="productCard.name">{{ productCard.name }}</h3>
-        </a>
+        </router-link>
         <p class="mb-1">
             <i
               v-for="(star, index) of productCard.stars" :key="index"
@@ -47,10 +50,10 @@
           </span>
         </p>
         <div class="custom-radio-button pl-1 pt-2 custom-radio-button-scroll">
-          <div v-for="(detail) in productCard.details" :key="detail.id" >
-            <input type="radio" :value="detail.name" :name="detail.name" :checked="detail.selected" :id="detail.id" required>
-            <span class="text_quantity_product text_overflow_1_line" data-toggle="tooltip" data-placement="top" :title="detail.name">
-              <label :for="detail.selected" @click="change_button_stock(detail.id, product.id)">
+          <div v-for="(detail) in productCard.details" :key="detail.id">
+            <input type="radio" :value="detail.name" :name="detail.name" :id="detail.id" required>
+            <span class="text_quantity_product text_overflow_1_line" :title="detail.name">
+              <label :for="detail.selected" @click="change_button_stock(detail.id, product.id)" :class="[detail.selected ? 'bg_purple text-white' : '']">
                 {{ detail.name }}
               </label>
             </span>
